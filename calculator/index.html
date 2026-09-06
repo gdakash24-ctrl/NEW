@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retro Neon Calculator</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #1a1a1a;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ffe5;
+      padding: 30px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .calculator h1 {
+      margin-bottom: 10px;
+      color: #00ffe5;
+      text-shadow: 0 0 10px #00ffe5;
+    }
+
+    .display {
+      background: #000;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      height: 60px;
+      font-size: 28px;
+      color: #00ffe5;
+      padding: 10px;
+      text-align: right;
+      margin-bottom: 20px;
+      box-shadow: inset 0 0 10px #00ffe5;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .buttons button {
+      padding: 20px;
+      font-size: 20px;
+      background: #0d0d0d;
+      border: 2px solid #00ffe5;
+      border-radius: 10px;
+      color: #00ffe5;
+      box-shadow: 0 0 10px #00ffe5;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .buttons button:hover {
+      background: #00ffe5;
+      color: #000;
+      box-shadow: 0 0 20px #00ffe5;
+    }
+
+    .buttons .equals {
+      grid-column: span 2;
+      background: #ff0066;
+      border-color: #ff0066;
+      box-shadow: 0 0 10px #ff0066;
+    }
+
+    .buttons .equals:hover {
+      background: #fff;
+      color: #ff0066;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <h1>NEON CALC</h1>
+  <input type="text" id="display" class="display" disabled>
+  <div class="buttons">
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="append('%')">%</button>
+    <button onclick="append('/')">÷</button>
+    <button onclick="append('*')">×</button>
+
+    <button onclick="append('7')">7</button>
+    <button onclick="append('8')">8</button>
+    <button onclick="append('9')">9</button>
+    <button onclick="append('-')">−</button>
+
+    <button onclick="append('4')">4</button>
+    <button onclick="append('5')">5</button>
+    <button onclick="append('6')">6</button>
+    <button onclick="append('+')">+</button>
+
+    <button onclick="append('1')">1</button>
+    <button onclick="append('2')">2</button>
+    <button onclick="append('3')">3</button>
+    <button onclick="append('.')">.</button>
+
+    <button onclick="append('0')">0</button>
+    <button class="equals" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+
+  function append(value) {
+    display.value += value;
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value.replace('%', '/100'));
+    } catch {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
